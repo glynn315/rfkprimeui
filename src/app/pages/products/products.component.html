@@ -1,1 +1,5 @@
-<p>products works!</p>
+<div class="mt-1 flex justify-between items-center">
+    <p class="text-lg">Product Management</p>
+    <button class="px-6 rounded-md py-3 bg-cyan-300 flex justify-between items-center gap-2 cursor-pointer" (click)="openModal()"><lucide-icon [img]="plus"></lucide-icon> Add New Products</button>
+</div>
+<app-addproducts [openTaskModal]="openTaskModal" (openTaskModalChange)="openTaskModal = $event"></app-addproducts>
