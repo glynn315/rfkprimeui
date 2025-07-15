@@ -1,0 +1,22 @@
+ul{
+    padding: 10px;
+    li{
+        padding: 15px 5px;
+        cursor: pointer;
+        transition: .2s;
+        &:first-child{
+            &:hover{
+                background-color: unset;
+                color:unset;
+                border-radius: unset;
+                padding-left: 5px;
+            }
+        }
+        &:hover{
+            background-color: rgb(75, 75, 75);
+            border-radius: 10px;
+            padding-left: 15px;
+            color:#fff;
+        }
+    }
+}
