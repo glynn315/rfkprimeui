@@ -1,5 +1,16 @@
 <app-modal [isVisible]="openSupplierModal" [headerText]="headerText" (close)="closeModal()">
-    <form>
+    <form (ngSubmit)="AddSupplier()">
+        <div class="mt-2">
+            <label for="">Supplier Name</label>
+            <input type="text" name="supplier_name" [(ngModel)]="SupplierFields.supplier_name" id="" class="w-full rounded-md border border-gray-200 p-1 mt-1">
+        </div>
+        <div class="mt-2">
+            <label for="">Supplier Brand</label>
+            <input type="text" name="brand_name" [(ngModel)]="SupplierFields.brand_name" id="" class="w-full rounded-md border border-gray-200 p-1 mt-1">
+        </div>
+        <button class="w-full bg-cyan-400 rounded-md p-2 mt-3 text-white">
+            Save Changes
+        </button>
         
     </form>
 

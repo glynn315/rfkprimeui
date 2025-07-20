@@ -2,5 +2,33 @@
     <p class="text-lg">Account Management</p>
     <button class="px-6 rounded-md py-3 bg-cyan-300 flex justify-between items-center gap-2 cursor-pointer" (click)="openModal()"><lucide-icon [img]="plus"></lucide-icon> Add New Accounts</button>
 </div>
+<table class="w-full">
+    <thead class="text-left">
+        <th class="py-3 text-center">#</th>
+        <th class="py-3 text-left">Name</th>
+        <th class="py-3 text-left">Address</th>
+        <th class="py-3 text-center">Role</th>
+        <th class="py-3 text-center">Action</th>
+    </thead>
+    <tr class="hover:bg-cyan-300 duration-100" *ngFor="let User of UserData; let index = index">
+        <td class="py-3 text-center">
+            {{index + 1}}
+        </td>
+        <td class="py-3 text-left">
+            {{User.user_fname}} {{User.user_mname}} {{User.user_lname}}
+        </td>
+        <td class="py-3 text-left">
+            {{User.user_province}} {{User.user_city}} , {{User.user_zip}}
+        </td>
+        <td class="py-3 text-center">
+            -
+        </td>
+        <td class="py-3 text-left">
+            {{User.user_fname}}
+        </td>
+    </tr>
+</table>
 
-<app-addaccounts [openAccountModal]="openAccountModal" (openAccountModalChange)="openAccountModal = $event"></app-addaccounts>
+<app-addaccounts [openAccountModal]="openAccountModal" (openAccountModalChange)="openAccountModal = $event">
+    
+</app-addaccounts>

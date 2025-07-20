@@ -1,6 +1,40 @@
 <app-modal [isVisible]="openAccountModal" [headerText]="headerText" (close)="closeModal()">
-    <form>
-        
+    <form (ngSubmit)="AddNewUser()">
+        <div>
+            <label for="">First Name</label>
+            <input type="text" name="user_fname" id="" [(ngModel)]="UserFields.user_fname" class="w-full border border-gray-200 p-1 rounded-md">
+        </div>
+        <div>
+            <label for="">Middle Name</label>
+            <input type="text" name="user_mname" id="" [(ngModel)]="UserFields.user_mname" class="w-full border border-gray-200 p-1 rounded-md">
+        </div>
+        <div>
+            <label for="">Last Name</label>
+            <input type="text" name="user_lname" id="" [(ngModel)]="UserFields.user_lname" class="w-full border border-gray-200 p-1 rounded-md">
+        </div>
+        <div>
+            <label for="">Province</label>
+            <input type="text" name="user_province" id="" [(ngModel)]="UserFields.user_province" class="w-full border border-gray-200 p-1 rounded-md">
+        </div>
+        <div>
+            <label for="">City</label>
+            <input type="text" name="user_city" id="" [(ngModel)]="UserFields.user_city" class="w-full border border-gray-200 p-1 rounded-md">
+        </div>
+        <div>
+            <label for="">Zip Code</label>
+            <input type="text" name="user_zip" id="" [(ngModel)]="UserFields.user_zip" class="w-full border border-gray-200 p-1 rounded-md">
+        </div>
+        <div>
+            <label for="">User Name</label>
+            <input type="text" name="user_username" id="" [(ngModel)]="UserFields.user_username" class="w-full border border-gray-200 p-1 rounded-md">
+        </div>
+        <div>
+            <label for="">Password</label>
+            <input type="Password" name="user_password" id="" [(ngModel)]="UserFields.user_password" class="w-full border border-gray-200 p-1 rounded-md">
+        </div>
+        <button class="w-full bg-cyan-400 text-white p-2 rounded-md mt-3">
+            Save Changes
+        </button>
     </form>
 
 </app-modal>

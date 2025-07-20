@@ -3,4 +3,27 @@
     <button class="px-6 rounded-md py-3 bg-cyan-300 flex justify-between items-center gap-2 cursor-pointer" (click)="openModal()"><lucide-icon [img]="plus"></lucide-icon> Add New Supplier</button>
 </div>
 
+<table class="w-full">
+    <thead class="text-left">
+        <th class="py-3 text-center">#</th>
+        <th class="py-3 text-left">Name</th>
+        <th class="py-3 text-left">Address</th>
+        <th class="py-3 text-center">Action</th>
+    </thead>
+    <tr class="hover:bg-cyan-300 duration-100" *ngFor="let supplier of displaySupplier; let index = index">
+        <td class="py-3 text-center">
+            {{index + 1}}
+        </td>
+        <td class="py-3 text-left">
+            {{supplier.supplier_name}}
+        </td>
+        <td class="py-3 text-left">
+            {{supplier.brand_name}}
+        </td>
+        <td class="py-3 text-left">
+            <!-- {{User.user_fname}} -->
+        </td>
+    </tr>
+</table>
+
 <app-add-supplier [openSupplierModal]="openSupplierModal" (openSupplierModalChange)="openSupplierModal = $event"></app-add-supplier>
