@@ -1,5 +1,37 @@
 <app-modal [isVisible]="openTaskModal" [headerText]="headerText" (close)="closeModal()">
-    <form>
+    <form (ngSubmit)="addProducts()">
+        <div>
+            <label for="">Product Name</label>
+            <input type="text" name="product_name" [(ngModel)]="ProductFields.product_name" class="w-full border rounded-md border-gray-400 p-2" id="">
+        </div>
+        <div>
+            <label for="">Supplier</label>
+            <select name="supplier_id" [(ngModel)]="ProductFields.supplier_id" id="" class="w-full p-2 rounded-md border border-gray-200">
+                <option value="">Select Supplier</option>
+                <option  *ngFor="let supplier of SupplierData" value={{supplier.supplier_id}}>{{supplier.supplier_name}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="">Volume Type</label>
+            <select name="product_volume" [(ngModel)]="ProductFields.product_volume" id="" class="w-full p-2 rounded-md border border-gray-200">
+                <option value="">Select Volume Option</option>
+                <option value="PCS">Pieces</option>
+                <option value="BOX">Box</option>
+                <option value="GALLON">Gallon</option>
+            </select>
+        </div>
+        <div>
+            <label for="">Quantity Available</label>
+            <input type="text" name="product_quantity" [(ngModel)]="ProductFields.product_quantity" class="w-full border rounded-md border-gray-400 p-2" id="">
+        </div>
+        <div>
+            <label for="">Price</label>
+            <input type="text" name="product_pricebulk" [(ngModel)]="ProductFields.product_pricebulk" class="w-full border rounded-md border-gray-400 p-2" id="">
+        </div>
+
+        <button class="w-full bg-cyan-400 rounded-md p-2 mt-4">
+            Save Changes
+        </button>
         
     </form>
 

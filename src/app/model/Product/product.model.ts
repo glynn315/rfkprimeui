@@ -4,8 +4,8 @@ export interface Product {
     product_name: string
     product_volume: string
     product_quantity: string
-    product_pricepc: string
-    product_pricebulk: string
+    product_pricepc: number
+    product_pricebulk: number
     product_status: string
     
 }

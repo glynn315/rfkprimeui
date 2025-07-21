@@ -2,4 +2,44 @@
     <p class="text-lg">Product Management</p>
     <button class="px-6 rounded-md py-3 bg-cyan-300 flex justify-between items-center gap-2 cursor-pointer" (click)="openModal()"><lucide-icon [img]="plus"></lucide-icon> Add New Products</button>
 </div>
+<table class="w-full">
+    <thead class="text-left">
+        <th class="py-3 text-center">#</th>
+        <th class="py-3 text-left">Name</th>
+        <th class="py-3 text-left">Supplier</th>
+        <th class="py-3 text-center">Volume</th>
+        <th class="py-3 text-left">Quantity</th>
+        <th class="py-3 text-left">Price</th>
+        <th class="py-3 text-center">Status</th>
+    </thead>
+    <tr class="hover:bg-cyan-300 duration-100" *ngFor="let product of ProductList; let index = index">
+        <td class="py-3 text-center">
+            {{index + 1}}
+        </td>
+        <td class="py-3 text-left">
+            {{product.product_name}}
+        </td>
+        <td class="py-3 text-left">
+            {{product.supplier_id}}
+        </td>
+        <td class="py-3 text-left">
+            {{product.product_volume}}
+        </td>
+        <td class="py-3 text-left">
+            {{product.product_quantity}}
+        </td>
+        <td class="py-3 text-left">
+            ₱ {{product.product_pricebulk}}
+        </td>
+        <td class="py-3 text-left">
+            {{product.product_status}}
+        </td>
+        <td class="py-3 text-left">
+            <!-- {{User.user_fname}} -->
+        </td>
+    </tr>
+</table>
+
+
+
 <app-addproducts [openTaskModal]="openTaskModal" (openTaskModalChange)="openTaskModal = $event"></app-addproducts>
