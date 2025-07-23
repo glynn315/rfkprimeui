@@ -1,1 +1,26 @@
-<p>orders works!</p>
+<div class="flex justify-between items-start gap-4">
+    <div class="w-1/6 p-2 rounded-xl bg-gray-200">
+        <header class="text-lg flex justify-between p-2">
+            Filters
+            <lucide-icon [img]="Funnel"></lucide-icon>
+        </header>
+    </div>
+    <div class="w-5/6">
+        <div class="w-full bg-cyan-300 rounded-md p-3 flex justify-end">
+            <lucide-icon [img]="Cart"></lucide-icon>
+        </div>
+        <div class="grid grid-cols-4 gap-7 mt-5">
+            <div *ngFor="let product of ProductDisplay" class="border rounded-lg p-3 hover:scale-102 hover:bg-gray-50 duration-20">
+                <img src="" alt="" class="w-full h-[100px]">
+                <div class="flex justify-between mt-2">
+                    <div class="flex flex-col">
+                        <span>{{product.product_name}}</span>
+                        ₱ {{product.product_pricebulk}}
+                    </div>
+                    <button class="bg-green-400 text-white text-sm p-2 h-9 rounded-md">Cart</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

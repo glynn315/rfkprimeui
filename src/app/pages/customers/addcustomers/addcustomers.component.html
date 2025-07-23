@@ -1,5 +1,40 @@
 <app-modal [isVisible]="openCustomerModal" [headerText]="headerText" (close)="closeModal()">
-    <form>
+    <form (ngSubmit)="addNewCustomer()">
+        <div>
+            <label for="">First Name</label>
+            <input type="text" name="customer_fname" [(ngModel)]="CustomerFields.customer_fname" class="w-full p-2 border rounded-md border-gray-200" id="">
+        </div>
+        <div>
+            <label for="">Middle Name</label>
+            <input type="text" name="customer_mname" [(ngModel)]="CustomerFields.customer_mname" class="w-full p-2 border rounded-md border-gray-200" id="">
+        </div>
+        <div>
+            <label for="">Last Name</label>
+            <input type="text" name="customer_lname" [(ngModel)]="CustomerFields.customer_lname" class="w-full p-2 border rounded-md border-gray-200" id="">
+        </div>
+        <div>
+            <label for="">Contact Person</label>
+            <input type="text" name="contact_person" [(ngModel)]="CustomerFields.contact_person" class="w-full p-2 border rounded-md border-gray-200" id="">
+        </div>
+        <div>
+            <label for="">Contact Number</label>
+            <input type="text" name="contact_number" [(ngModel)]="CustomerFields.contact_number" class="w-full p-2 border rounded-md border-gray-200" id="">
+        </div>
+        <div>
+            <label for="">Provice</label>
+            <input type="text" name="customer_province" [(ngModel)]="CustomerFields.customer_province" class="w-full p-2 border rounded-md border-gray-200" id="">
+        </div>
+        <div>
+            <label for="">City</label>
+            <input type="text" name="customer_city" [(ngModel)]="CustomerFields.customer_city" class="w-full p-2 border rounded-md border-gray-200" id="">
+        </div>
+        <div>
+            <label for="">Zip Code</label>
+            <input type="text" name="customer_zip" [(ngModel)]="CustomerFields.customer_zip" class="w-full p-2 border rounded-md border-gray-200" id="">
+        </div>
+        <button class="w-full mt-4 rounded-md bg-cyan-400 text-white p-2">
+            Save Changes
+        </button>
         
     </form>
 
