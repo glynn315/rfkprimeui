@@ -17,10 +17,15 @@
                         <span>{{product.product_name}}</span>
                         ₱ {{product.product_pricebulk}}
                     </div>
-                    <button class="bg-green-400 text-white text-sm p-2 h-9 rounded-md">Cart</button>
+                    <button class="bg-green-400 text-white text-sm p-2 h-9 rounded-md" (click)="openModal(product.product_id)">Cart</button>
                 </div>
                 
             </div>
         </div>
     </div>
 </div>
+
+<app-modal [isVisible]="OpenProductModal" [headerText]="headerText" (close)="closeModal()">
+
+    {{productReference}}
+</app-modal>
