@@ -1,1 +1,47 @@
-<p>cart works!</p>
+<div class="mt-1 flex justify-between items-center">
+    <p class="text-lg">Order Management</p>
+</div>
+<div class="flex justify-between items-start gap-4">
+    <table class="w-5/6">
+        <thead class="text-left">
+            <th class="py-3 text-center">#</th>
+            <th class="py-3 text-left">Product Name</th>
+            <th class="py-3 text-center">Quantity</th>
+            <th class="py-3 text-center">Price</th>
+            <th class="py-3 text-center">Total</th>
+        </thead>
+        <tr class="hover:bg-cyan-300 duration-100" *ngFor="let cart of cartDetails; let index = index">
+            <td class="py-3 text-center">
+                {{index + 1}}
+            </td>
+            <td class="py-3 text-left">
+                {{cart.product_id}}
+            </td>
+            <td class="py-3 text-center">
+                {{cart.quantity}}
+            </td>
+            <td class="py-3 text-center">
+                {{cart.product_price}}
+            </td>
+            <td class="py-3 text-center">
+                1000
+            </td>
+        </tr>
+    </table>
+    <div class="w-1/6 border p-2 rounded-md">
+        <form>
+            <div>
+                Total
+            </div>
+            <div>
+                Payment Method
+                <select name="" id="" class="border rounded-md w-full p-2">
+                    <option value="">Select Payment Option</option>
+                </select>
+            </div>
+            <button class="p-2 bg-cyan-400 rounded-md text-white mt-4 w-full">
+                Update Payment
+            </button>
+        </form>
+    </div>
+</div>

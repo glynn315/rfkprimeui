@@ -9,10 +9,11 @@ import { NotFoundError } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../../Services/Cart/cart.service';
 import { Cart } from '../../../model/Cart/cart.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
-  imports: [LucideAngularModule, HttpClientModule, CommonModule, ModalComponent, FormsModule],
+  imports: [RouterLink ,LucideAngularModule, HttpClientModule, CommonModule, ModalComponent, FormsModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss',
   providers: [ProductService, CartService]

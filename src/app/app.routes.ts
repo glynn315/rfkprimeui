@@ -11,6 +11,7 @@ import { ReceivablesComponent } from './pages/receivables/receivables/receivable
 import { CashierComponent } from './pages/cashier/cashier/cashier.component';
 import { OrdersComponent } from './pages/orders/orders/orders.component';
 import { CustomersComponent } from './pages/customers/customers.component';
+import { CartComponent } from './pages/Cart/cart/cart.component';
 
 export const routes: Routes = [
     {
@@ -27,6 +28,7 @@ export const routes: Routes = [
             {path:'cashier' , component:CashierComponent},
             {path:'orders' , component:OrdersComponent},
             {path:'customers' , component:CustomersComponent},
+            {path:'cart' , component:CartComponent},
         ]
     }
 ];
