@@ -6,17 +6,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from "../../../shared/modal/modal.component";
 import { NotFoundError } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { CartService } from '../../../Services/Cart/cart.service';
+import { Cart } from '../../../model/Cart/cart.model';
 
 @Component({
   selector: 'app-orders',
-  imports: [LucideAngularModule, HttpClientModule, CommonModule, ModalComponent],
+  imports: [LucideAngularModule, HttpClientModule, CommonModule, ModalComponent, FormsModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss',
-  providers: [ProductService]
+  providers: [ProductService, CartService]
 })
 export class OrdersComponent implements OnInit {
   
-  constructor(private ProductServices : ProductService){}
+  constructor(private ProductServices : ProductService , private CartServices : CartService){}
   readonly Funnel = Funnel;
   readonly Cart = ShoppingCartIcon;
   ProductDisplay: Product[] = [];
@@ -28,6 +31,12 @@ export class OrdersComponent implements OnInit {
     product_pricepc: 0,
     product_pricebulk: 0,
     product_status: ''
+  }
+  cartFields : Cart = {
+    product_id: '',
+    quantity: 0,
+    product_price: 0,
+    cart_status: ''
   }
   productReference:string = "";
   @Input() OpenProductModal = false;
@@ -50,6 +59,14 @@ export class OrdersComponent implements OnInit {
       this.OpenProductModal = true;
     }, (error) => {
       console.error('Failed to load product:', error);
+    });
+  }
+
+  addtoCart(){
+    this.cartFields.product_id = this.productReference;
+    this.cartFields.cart_status = 'ACTIVE';
+    this.CartServices.addtoCart(this.cartFields).subscribe(() => {
+      
     });
   }
 
