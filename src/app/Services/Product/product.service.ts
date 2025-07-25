@@ -20,4 +20,8 @@ export class ProductService {
   AddProduct(post:Product): Observable<Product>{
     return this.http.post<Product>(this.ApiUrl, post);
   }
+
+  displaySelectedProduct(id:string): Observable<Product>{
+    return this.http.get<Product>(`${this.ApiUrl}/${id}`);
+  }
 }

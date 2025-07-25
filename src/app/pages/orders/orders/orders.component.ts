@@ -20,6 +20,15 @@ export class OrdersComponent implements OnInit {
   readonly Funnel = Funnel;
   readonly Cart = ShoppingCartIcon;
   ProductDisplay: Product[] = [];
+  displaySelectedProduct: Product ={
+    supplier_id: '',
+    product_name: '',
+    product_volume: '',
+    product_quantity: '',
+    product_pricepc: 0,
+    product_pricebulk: 0,
+    product_status: ''
+  }
   productReference:string = "";
   @Input() OpenProductModal = false;
   headerText = 'Cart Modal';
@@ -29,15 +38,19 @@ export class OrdersComponent implements OnInit {
     this.DisplayProduct();
   }
 
-  openModal(product_id: any){
-
-    if (!product_id) {
-      return
-    }
+  openModal(product_id: string): void {
+    if (!product_id) return;
 
     this.productReference = product_id;
+    console.log('Opening modal for ID:', product_id);
 
-    this.OpenProductModal = true;
+    this.ProductServices.displaySelectedProduct(product_id).subscribe((data) => {
+      console.log('API Response:', data);
+      this.displaySelectedProduct = data;
+      this.OpenProductModal = true;
+    }, (error) => {
+      console.error('Failed to load product:', error);
+    });
   }
 
   closeModal(){
