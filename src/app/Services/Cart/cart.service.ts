@@ -17,7 +17,15 @@ export class CartService {
     return this.http.get<Cart[]>(this.apiUrl);
   }
 
+  displayCartActive(): Observable<Cart[]>{
+    return this.http.get<Cart[]>(`${this.apiUrl}/Active`);
+  }
+
   addtoCart(post: Cart): Observable<Cart>{
     return this.http.post<Cart>(this.apiUrl,post);
+  }
+
+  updateCartStatus(): Observable<Cart>{
+    return this.http.post<Cart>(`${this.apiUrl}/update`, {});
   }
 }

@@ -35,11 +35,17 @@
             </div>
             <div>
                 Payment Method
-                <select name="" id="" class="border rounded-md w-full p-2">
+                <select name="payment_method" [(ngModel)]="paymentFields.payment_method" id="" (change)="selectPaymentMethod()" class="border rounded-md w-full p-2">
                     <option value="">Select Payment Option</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Credit">Credit</option>
                 </select>
             </div>
-            <button class="p-2 bg-cyan-400 rounded-md text-white mt-4 w-full">
+            <div *ngIf="amountVisible">
+                Amount
+                <input type="text" name="payment_amount" [(ngModel)]="paymentFields.payment_amount" id="" class="border rounded-md w-full p-2">
+            </div>
+            <button class="p-2 bg-cyan-400 rounded-md text-white mt-4 w-full" (click)="addPayment()">
                 Update Payment
             </button>
         </form>
