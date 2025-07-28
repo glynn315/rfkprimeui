@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   
   constructor(private CartServices : CartService , private PaymentServices: PaymentService){}
   amountVisible : boolean = false;
+  termsVisible: boolean = false;
   cartDetails: Cart[] = [];
   paymentFields: Payment = {
     cart_id: 'CRT-20250725-1',
@@ -35,9 +36,11 @@ export class CartComponent implements OnInit {
   selectPaymentMethod(){
     if (this.paymentFields.payment_method == "Cash") {
       this.amountVisible = true;
+      this.termsVisible = false;
     }
     else{
       this.amountVisible = false;
+      this.termsVisible = true;
     }
   }
 

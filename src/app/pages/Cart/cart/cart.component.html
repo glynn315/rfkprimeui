@@ -45,6 +45,18 @@
                 Amount
                 <input type="text" name="payment_amount" [(ngModel)]="paymentFields.payment_amount" id="" class="border rounded-md w-full p-2">
             </div>
+            <div *ngIf="termsVisible">
+                Terms
+                <select name="terms" [(ngModel)]="paymentFields.terms" id="" class="border rounded-md w-full p-2">
+                    <option value="">Select Terms</option>
+                    <option value="4">4 Months</option>
+                    <option value="6">6 Months</option>
+                    <option value="8">8 months</option>
+                    <option value="12">12 months</option>
+                </select>
+                Percentage %
+                <input type="text" name="percentage" [(ngModel)]="paymentFields.percentage" id="" class="border rounded-md w-full p-2">
+            </div>
             <button class="p-2 bg-cyan-400 rounded-md text-white mt-4 w-full" (click)="addPayment()">
                 Update Payment
             </button>

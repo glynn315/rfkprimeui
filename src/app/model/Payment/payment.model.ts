@@ -3,5 +3,7 @@ export interface Payment {
     cart_id: string,
     payment_method: string,
     payment_amount?: number,
+    terms?: number,
+    percentage?: number,
     payment_status: string,
 }
