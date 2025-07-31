@@ -5,4 +5,6 @@ export interface Cart {
     quantity: number,
     product_price: number,
     cart_status: string,
+    discount?: number,
+    vat: number,
 }

@@ -37,7 +37,9 @@ export class OrdersComponent implements OnInit {
     product_id: '',
     quantity: 0,
     product_price: 0,
-    cart_status: ''
+    cart_status: '',
+    discount:0,
+    vat: 12,
   }
   productReference:string = "";
   @Input() OpenProductModal = false;
@@ -52,11 +54,10 @@ export class OrdersComponent implements OnInit {
     if (!product_id) return;
 
     this.productReference = product_id;
-    console.log('Opening modal for ID:', product_id);
 
     this.ProductServices.displaySelectedProduct(product_id).subscribe((data) => {
-      console.log('API Response:', data);
       this.displaySelectedProduct = data;
+      this.cartFields.product_price = this.displaySelectedProduct.product_pricebulk * 1.12;
       this.OpenProductModal = true;
     }, (error) => {
       console.error('Failed to load product:', error);
