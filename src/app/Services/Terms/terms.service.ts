@@ -17,6 +17,18 @@ export class TermsService {
     return this.http.get<Terms[]>(this.apiUrl);
   }
 
+  displayPendingTerms(): Observable<Terms[]>{
+    return this.http.get<Terms[]>(`${this.apiUrl}/customerTerms`);
+  }
+
+  displayTermsInformation(id:number): Observable<Terms>{
+    return this.http.get<Terms>(`${this.apiUrl}/payment/${id}`);
+  }
+
+  displayPaymentList(order_id: string): Observable<Terms[]>{
+    return this.http.get<Terms[]>(`${this.apiUrl}/${order_id}`);
+  }
+
   addTerms(post:Terms): Observable<Terms>{
     return this.http.post<Terms>(this.apiUrl, post);
   }

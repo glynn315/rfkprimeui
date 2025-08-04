@@ -1,0 +1,13 @@
+<div *ngIf="displayInfo">
+    {{displayInfo.amount}}
+    {{displayInfo.order_id}}
+    <form (ngSubmit)="payTerms()">
+        <div>
+            <label for="">Amount</label>
+            <input type="text" name="payment_amount" [(ngModel)]="paymentField.payment_amount" id="" placeholder="Amount">
+        </div>
+        <button *ngIf="displayInfo.amount == paymentField.payment_amount">
+            Payment
+        </button>
+    </form>
+</div>

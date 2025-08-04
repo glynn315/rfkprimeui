@@ -2,4 +2,11 @@
 // @import 'tailwindcss/components';
 // @import 'tailwindcss/utilities';
 
+.font-sans{
+    font-family: "Varela Round",sans-serif;
+}
+.font-mont{
+    font-family: "montserrat", sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap');
 @import "tailwindcss";

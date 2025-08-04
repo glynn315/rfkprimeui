@@ -37,7 +37,7 @@ export class CartComponent implements OnInit {
     schedule_date: new Date(),
     payment_date: new Date(),
     payment_status: 'ACTIVE',
-    payment_id: 1,
+    order_id: '',
     terms: 0,
     initial_date: new Date(),
   }
@@ -119,15 +119,19 @@ export class CartComponent implements OnInit {
     if (this.OrderFields.payment_method === 'Credit') {
       this.paymentFields.payment_amount = this.cartTotal;
       this.OrderFields.cart_id = this.paymentFields.cart_id;
-      this.OrderServices.addnewOrders(this.OrderFields).subscribe(() => {});
-      this.monthlyPayment = (this.cartTotal && this.cartTotal)
+      this.OrderServices.addnewOrders(this.OrderFields).subscribe((orderResponse: any) => {
+        const orderId = orderResponse.order_id;
+        this.termsField.order_id = orderId;
+        this.monthlyPayment = (this.cartTotal && this.cartTotal)
         ? this.cartTotal / this.OrderFields.terms
         : 0;
 
-      this.termsField.amount = parseFloat(this.monthlyPayment.toFixed(2));
-      this.termsField.terms = this.OrderFields.terms;
-      this.termsServices.addTerms(this.termsField).subscribe(() => {
+        this.termsField.amount = parseFloat(this.monthlyPayment.toFixed(2));
+        this.termsField.terms = this.OrderFields.terms;
+        this.termsServices.addTerms(this.termsField).subscribe(() => {
+        });
       });
+      
 
       this.CartServices.updateCartStatus().subscribe(() => {
 

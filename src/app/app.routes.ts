@@ -12,8 +12,13 @@ import { CashierComponent } from './pages/cashier/cashier/cashier.component';
 import { OrdersComponent } from './pages/orders/orders/orders.component';
 import { CustomersComponent } from './pages/customers/customers.component';
 import { CartComponent } from './pages/Cart/cart/cart.component';
+import { PaymentComponent } from './pages/Payment/payment/payment.component';
+import { LoginComponent } from './auth/Login/login/login.component';
+import { PaymentviewComponent } from './pages/Payment/paymentview/paymentview.component';
+import { PaymenttransactionComponent } from './pages/Payment/paymenttransaction/paymenttransaction.component';
 
 export const routes: Routes = [
+    {path:'',redirectTo:'/login', pathMatch:'full'},
     {
         path:'', component:LayoutComponent,
         children:[
@@ -29,6 +34,10 @@ export const routes: Routes = [
             {path:'orders' , component:OrdersComponent},
             {path:'customers' , component:CustomersComponent},
             {path:'cart' , component:CartComponent},
+            {path:'payments' , component:PaymentComponent},
+            {path:'viewTerms/:order_id' , component:PaymentviewComponent},
+            {path:'paymenttransaction/:id' , component:PaymenttransactionComponent}
         ]
-    }
+    },
+    { path: 'login', component: LoginComponent},
 ];
