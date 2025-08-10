@@ -1,4 +1,33 @@
-<div class="mt-1 flex justify-between items-center">
-    <p class="text-lg">Inventory Management</p>
-    <button class="px-6 rounded-md py-3 bg-cyan-300 flex justify-between items-center gap-2 cursor-pointer"><lucide-icon [img]="box"></lucide-icon>Generate PDF</button>
+<div class="w-full flex justify-between">
+  <header class="text-2xl">
+    Inventory Management
+  </header>
+  <button (click)="generateInventoryReport()" class="generate-btn p-4 rounded-xl font-semibold bg-cyan-400 mb-3 flex flex-row gap-2 items-center text-white cursor-pointer">
+    <lucide-icon [img]="Printer"></lucide-icon> Generate Inventory Report
+  </button>
 </div>
+
+<table class="w-full">
+  <thead>
+    <tr class="text-left py-4">
+      <th class="text-center">#</th>
+      <th>Product Name</th>
+      <th>Remaining Quantity</th>
+      <th>Total Sold</th>
+      <th class="w-[150px] text-center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of inventoryList ; let index=index">
+      <td class="text-center">{{ index + 1 }}</td>
+      <td>{{ item.product_name }}</td>
+      <td>{{ item.remaining_quantity }}</td>
+      <td>{{ item.total_sold }}</td>
+      <td>
+        <button class="w-full rounded-xl p-1.5 text-white cursor-pointer bg-cyan-400">
+          View
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

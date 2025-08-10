@@ -3,4 +3,7 @@ export interface OrderInformation {
     middle_name: string,
     last_name: string,
     contact_number: string,
+    contact_person: string,
+    province: string,
+    city: string,
 }

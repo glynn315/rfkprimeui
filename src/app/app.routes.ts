@@ -16,6 +16,7 @@ import { PaymentComponent } from './pages/Payment/payment/payment.component';
 import { LoginComponent } from './auth/Login/login/login.component';
 import { PaymentviewComponent } from './pages/Payment/paymentview/paymentview.component';
 import { PaymenttransactionComponent } from './pages/Payment/paymenttransaction/paymenttransaction.component';
+import { ViewreceivablesComponent } from './pages/receivables/viewreceivables/viewreceivables.component';
 
 export const routes: Routes = [
     {path:'',redirectTo:'/login', pathMatch:'full'},
@@ -36,6 +37,7 @@ export const routes: Routes = [
             {path:'cart' , component:CartComponent},
             {path:'payments' , component:PaymentComponent},
             {path:'viewTerms/:order_id' , component:PaymentviewComponent},
+            {path:'viewReceivables/:order_id' , component:ViewreceivablesComponent},
             {path:'paymenttransaction/:id' , component:PaymenttransactionComponent}
         ]
     },

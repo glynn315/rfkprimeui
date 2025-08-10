@@ -1,0 +1,11 @@
+th{
+    padding: 15px 10px;
+    background-color: rgba(0, 129, 189, 0.425);
+    &:nth-child(1){
+        border-radius: 10px 0px 0px 10px;
+    }
+    &:last-child{
+        border-radius: 0px 10px 10px 0px;
+    }
+    color: #fff;
+}

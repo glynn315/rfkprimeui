@@ -1,1 +1,21 @@
-<p>reports works!</p>
+<div class="w-full">
+  <header class="text-2xl">Generate Reports</header>
+
+  <form class="mt-5" (ngSubmit)="generateReport()">
+    <div>
+      <label>Select Report Type</label>
+      <div class="flex flex-row gap-3 mt-3">
+        <select [(ngModel)]="selectedReport" name="reportType" class="w-7/8 border rounded py-2">
+          <option value="">Select to Generate</option>
+          <option value="products">Product List</option>
+          <option value="customers">Customer List</option>
+          <option value="sold">Sold Items</option>
+        </select>
+
+        <button type="submit" class="w-1/8 p-2 bg-cyan-400 rounded">
+          Generate
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

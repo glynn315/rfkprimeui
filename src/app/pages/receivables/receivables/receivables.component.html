@@ -1,1 +1,32 @@
-<p>receivables works!</p>
+<table class="w-full">
+    <thead class="text-left">
+        <th class="py-3 text-center">#</th>
+        <th class="py-3 text-left">Order ID</th>
+        <th class="py-3 text-center">Schedule Payment</th>
+        <th class="py-3 text-center">Monthly Payment</th>
+        <th class="py-3 text-center">Status</th>
+        <th class="py-3 text-center">Actions</th>
+    </thead>
+    <tr class="hover:bg-cyan-300 duration-100" *ngFor="let Terms of TermsList; let index = index">
+        <td class="py-1 text-center">
+            {{index + 1}}
+        </td>
+        <td class="py-1 text-left">
+            {{Terms.order_id}}
+        </td>
+        <td class="py-1 text-center">
+            {{Terms.schedule_date}}
+        </td>
+        <td class="py-1 text-center">
+            {{Terms.amount}}
+        </td>
+        <td class="py-1 text-center">
+            {{Terms.payment_status}}
+        </td>
+        <td class="py-1 text-center">
+            <button (click)="viewTerms(Terms.order_id)" class="bg-cyan-400 p-2 rounded-md text-white px-6">
+                View
+            </button>
+        </td>
+    </tr>
+</table>

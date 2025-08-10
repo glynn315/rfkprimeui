@@ -1,0 +1,62 @@
+<div class="w-full p-4 rounded-2xl bg-cyan-400 text-black">
+    <header class="text-3xl border-b-2 pb-3">Customer Information</header>
+    <table *ngIf="displayInfo" class="">
+        <tr>
+            <td class="w-50">Full Name</td>
+            <td>{{displayInfo.first_name}} {{displayInfo.middle_name}} {{displayInfo.last_name}}</td>
+        </tr>
+        <tr>
+            <td>Contact Person</td>
+            <td>{{displayInfo.contact_person}}</td>
+        </tr>
+        <tr>
+            <td>Contact Number</td>
+            <td>{{displayInfo.contact_number}}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>{{displayInfo.province}} {{displayInfo.city}}</td>
+        </tr>
+    </table>
+
+</div>
+<div class="flex justify-end mb-4">
+    <button (click)="generateSOA()" class="generate-btn p-4 mt-4 rounded-xl font-semibold bg-green-400 mb-3 flex flex-row gap-2 items-center text-white cursor-pointer">
+        <lucide-icon [img]="Printer"></lucide-icon>  Generate SOA
+    </button>
+</div>
+<table class="w-full">
+    <thead class="text-left">
+        <th class="py-3 text-center">#</th>
+        <th class="py-3 text-left">Date</th>
+        <th class="py-3 text-left">Amount</th>
+        <th class="py-3 text-center">Payment Date</th>
+        <th class="py-3 text-left">Status</th>
+        <th class="py-3 text-center">Actions</th>
+    </thead>
+    <tr class="hover:bg-cyan-300 duration-100" *ngFor="let Terms of TermsList; let index = index">
+        <td class="py-2 text-center">
+            {{index + 1}}
+        </td>
+        <td class="py-2 text-left">
+            {{Terms.schedule_date}}
+        </td>
+        <td class="py-2 text-left">
+            {{Terms.amount}}
+        </td>
+        <td class="py-2 text-center">
+            {{Terms.payment_date}}
+        </td>
+        <td class="py-2 text-left">
+            {{Terms.payment_status}}
+        </td>
+        <td class="py-2 text-center">
+            <div *ngIf="Terms.payment_status == 'PAID'">
+                <span class="p-1 bg-green-400 rounded-md px-7 text-white cursor-default">PAID</span>
+            </div>
+            <div *ngIf="Terms.payment_status == 'PENDING'">
+                <button class="p-1 bg-cyan-400 rounded-md px-8 text-white cursor-pointer" (click)="viewReceivables(Terms.id)">PAY</button>
+            </div>
+        </td>
+    </tr>
+</table>

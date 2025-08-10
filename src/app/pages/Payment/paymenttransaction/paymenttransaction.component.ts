@@ -46,6 +46,13 @@ export class PaymenttransactionComponent implements OnInit {
   }
 
   payTerms() {
+    const idParam = this.route.snapshot.paramMap.get('id');
+    this.orderID = idParam !== null ? Number(idParam) : null;
+    if (idParam) {
+      this.TermsServices.updatePaymentStatus(parseInt(idParam),'PAID').subscribe(()=>{
+
+      });
+    }
     if (this.displayInfo?.order_id) {
       this.paymentField.order_id = this.displayInfo?.order_id;
       this.paymentServices.addPayment(this.paymentField).subscribe(()=>{});

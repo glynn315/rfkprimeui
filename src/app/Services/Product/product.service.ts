@@ -24,4 +24,18 @@ export class ProductService {
   displaySelectedProduct(id:string): Observable<Product>{
     return this.http.get<Product>(`${this.ApiUrl}/${id}`);
   }
+
+  updateProductQuantity(cartItems: any): Observable<any> {
+    return this.http.post(`${this.ApiUrl}/deduct`, { cart_items: cartItems });
+  }
+
+  getInventorySummary(): Observable<{ total_sold: number, total_remaining: number }> {
+    return this.http.get<{ total_sold: number, total_remaining: number }>(
+      `${this.ApiUrl}/inventory`
+    );
+  }
+
+  getInventoryList(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.ApiUrl}/inventory`);
+  }
 }

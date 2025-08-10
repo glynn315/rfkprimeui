@@ -13,13 +13,14 @@ import { Order } from '../../../model/Order/order.model';
 import { OrderService } from '../../../Services/Order/order.service';
 import { CustomerService } from '../../../Services/Customer/customer.service';
 import { Customer } from '../../../model/Customer/customer.model';
+import { ProductService } from '../../../Services/Product/product.service';
 
 @Component({
   selector: 'app-cart',
   imports: [HttpClientModule, LucideAngularModule, CommonModule, FormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
-  providers: [CartService, PaymentService, TermsService, OrderService, CustomerService],
+  providers: [CartService, PaymentService, TermsService, OrderService, CustomerService, ProductService],
 })
 export class CartComponent implements OnInit {
   constructor(
@@ -27,7 +28,8 @@ export class CartComponent implements OnInit {
     private PaymentServices: PaymentService,
     private termsServices: TermsService,
     private OrderServices: OrderService,
-    private CustomerServices: CustomerService
+    private CustomerServices: CustomerService,
+    private ProductServices: ProductService
   ) {}
   amountVisible: boolean = false;
   paymentTerms: number= 0;
@@ -113,6 +115,14 @@ export class CartComponent implements OnInit {
 
         });
       });
+      this.ProductServices.updateProductQuantity(
+        this.cartDetails.map(item => ({
+          product_id: item.product_id,
+          quantity: item.quantity
+        }))
+      ).subscribe(() => {
+        console.log('Product quantities updated');
+      });
     }
     
 
@@ -130,6 +140,14 @@ export class CartComponent implements OnInit {
         this.termsField.terms = this.OrderFields.terms;
         this.termsServices.addTerms(this.termsField).subscribe(() => {
         });
+      });
+      this.ProductServices.updateProductQuantity(
+        this.cartDetails.map(item => ({
+          product_id: item.product_id,
+          quantity: item.quantity
+        }))
+      ).subscribe(() => {
+        console.log('Product quantities updated');
       });
       
 

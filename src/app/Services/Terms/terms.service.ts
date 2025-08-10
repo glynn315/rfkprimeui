@@ -32,4 +32,15 @@ export class TermsService {
   addTerms(post:Terms): Observable<Terms>{
     return this.http.post<Terms>(this.apiUrl, post);
   }
+  updatePaymentStatus(id: number, status: string, paymentDate?: string): Observable<Terms> {
+    const url = `${this.apiUrl}/${id}/status`;
+    const body: any = {
+      payment_status: status
+    };
+    if (paymentDate) {
+      body.payment_date = paymentDate;
+    }
+
+    return this.http.put<Terms>(url, body);
+  }
 }
