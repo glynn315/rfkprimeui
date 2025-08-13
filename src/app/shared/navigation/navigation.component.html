@@ -2,15 +2,15 @@
     <ul class="bg-gray-100 h-full w-60 rounded shadow-md">
         <li>PALMES STORES</li>
         <li routerLink="/dashboard">Dashboard</li>
-        <li routerLink="/accounts">Accounts</li>
-        <li routerLink="/products">Product</li>
+        <li *ngIf="user.userRole == 'ADMIN'" routerLink="/accounts">Accounts</li>
+        <li *ngIf="user.userRole == 'ADMIN'" routerLink="/products">Product</li>
         <li routerLink="/inventory">Inventory</li>
-        <li routerLink="/supplier">Supplier</li>
-        <li routerLink="/reports">Reports</li>
-        <li routerLink="/receivables">Receivables</li>
-        <li routerLink="/cashier">Cashier</li>
-        <li routerLink="/orders">Orders</li>
+        <li *ngIf="user.userRole == 'ADMIN'" routerLink="/supplier">Supplier</li>
+        <li *ngIf="user.userRole == 'ADMIN'" routerLink="/document">Documents</li>
+        <li *ngIf="user.userRole == 'ADMIN'" routerLink="/reports">Reports</li>
+        <li *ngIf="user.userRole == 'CASHIER'" routerLink="/receivables">Receivables</li>
+        <li *ngIf="user.userRole == 'CASHIER'" routerLink="/orders">Orders</li>
         <li routerLink="/customers">Customers</li>
-        <li routerLink="/payments">Payments</li>
+        <li *ngIf="user.userRole == 'CASHIER'" routerLink="/payments">Payments</li>
     </ul>
 </div>

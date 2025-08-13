@@ -25,6 +25,14 @@
             <input type="text" name="user_zip" id="" [(ngModel)]="UserFields.user_zip" class="w-full border border-gray-200 p-1 rounded-md">
         </div>
         <div>
+            <label for="">Position</label>
+            <select name="userRole" [(ngModel)]="UserFields.userRole" id="">
+                <option value="">Select Role</option>
+                <option value="ADMIN">ADMIN</option>
+                <option value="CASHIER">CASHIER</option>
+            </select>
+        </div>
+        <div>
             <label for="">User Name</label>
             <input type="text" name="user_username" id="" [(ngModel)]="UserFields.user_username" class="w-full border border-gray-200 p-1 rounded-md">
         </div>

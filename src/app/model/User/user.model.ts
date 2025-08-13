@@ -9,4 +9,5 @@ export interface User {
     user_status: string,
     user_username: string,
     user_password: string,
+    userRole: string
 }

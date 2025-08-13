@@ -21,7 +21,10 @@
             {{User.user_province}} {{User.user_city}} , {{User.user_zip}}
         </td>
         <td class="py-3 text-center">
-            -
+            <span *ngIf="User.userRole">
+                {{User.userRole}}
+            </span>
+            <span *ngIf="User.userRole == null"> - </span>
         </td>
         <td class="py-3 text-left">
             {{User.user_fname}}

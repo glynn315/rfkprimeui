@@ -1,0 +1,39 @@
+<app-modal
+    [isVisible]="openDocumentModal"
+    [headerText]="headerText"
+    (close)="closeModal()"
+>
+    <form (ngSubmit)="uploadDocuments()">
+        <div class="mt-2">
+        <label for="fileName">File Name</label>
+        <input
+            type="text"
+            id="fileName"
+            [(ngModel)]="fileName"
+            name="fileName"
+            class="w-full rounded-md border border-gray-200 p-1 mt-1"
+            placeholder="Enter file name"
+            required
+        />
+        </div>
+        <div class="mt-2">
+        <label for="fileInput">Upload File</label>
+        <input
+            type="file"
+            id="fileInput"
+            (change)="onFileSelected($event)"
+            class="w-full rounded-md border border-gray-200 p-1 mt-1"
+            required
+        />
+        </div>
+        <div class="mt-2" *ngIf="selectedFile">
+        <p class="text-sm text-gray-600">Selected: {{ selectedFile.name }}</p>
+        </div>
+        <button
+        type="submit"
+        class="w-full bg-cyan-400 rounded-md p-2 mt-3 text-white hover:bg-cyan-500"
+        >
+        Save Changes
+        </button>
+    </form>
+</app-modal>

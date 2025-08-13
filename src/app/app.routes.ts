@@ -17,28 +17,30 @@ import { LoginComponent } from './auth/Login/login/login.component';
 import { PaymentviewComponent } from './pages/Payment/paymentview/paymentview.component';
 import { PaymenttransactionComponent } from './pages/Payment/paymenttransaction/paymenttransaction.component';
 import { ViewreceivablesComponent } from './pages/receivables/viewreceivables/viewreceivables.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {path:'',redirectTo:'/login', pathMatch:'full'},
     {
         path:'', component:LayoutComponent,
         children:[
-            {path:'dashboard' , component:DashboardComponent},
-            {path:'accounts' , component:AccountsComponent},
-            {path:'inventory' , component:InventoryComponent},
-            {path:'documents' , component:DocumentsComponent},
-            {path:'reports' , component:ReportsComponent},
-            {path:'supplier' , component:SupplierComponent},
-            {path:'products' , component:ProductsComponent},
-            {path:'receivables' , component:ReceivablesComponent},
-            {path:'cashier' , component:CashierComponent},
-            {path:'orders' , component:OrdersComponent},
-            {path:'customers' , component:CustomersComponent},
-            {path:'cart' , component:CartComponent},
-            {path:'payments' , component:PaymentComponent},
-            {path:'viewTerms/:order_id' , component:PaymentviewComponent},
-            {path:'viewReceivables/:order_id' , component:ViewreceivablesComponent},
-            {path:'paymenttransaction/:id' , component:PaymenttransactionComponent}
+            {path:'dashboard' , component:DashboardComponent, canActivate: [AuthGuard]},
+            {path:'accounts' , component:AccountsComponent, canActivate: [AuthGuard]},
+            {path:'inventory' , component:InventoryComponent, canActivate: [AuthGuard]},
+            {path:'documents' , component:DocumentsComponent, canActivate: [AuthGuard]},
+            {path:'reports' , component:ReportsComponent, canActivate: [AuthGuard]},
+            {path:'supplier' , component:SupplierComponent, canActivate: [AuthGuard]},
+            {path:'products' , component:ProductsComponent, canActivate: [AuthGuard]},
+            {path:'receivables' , component:ReceivablesComponent, canActivate: [AuthGuard]},
+            {path:'cashier' , component:CashierComponent, canActivate: [AuthGuard]},
+            {path:'orders' , component:OrdersComponent, canActivate: [AuthGuard]},
+            {path:'customers' , component:CustomersComponent, canActivate: [AuthGuard]},
+            {path:'cart' , component:CartComponent, canActivate: [AuthGuard]},
+            {path:'payments' , component:PaymentComponent, canActivate: [AuthGuard]},
+            {path:'viewTerms/:order_id' , component:PaymentviewComponent, canActivate: [AuthGuard]},
+            {path:'viewReceivables/:order_id' , component:ViewreceivablesComponent, canActivate: [AuthGuard]},
+            {path:'paymenttransaction/:id' , component:PaymenttransactionComponent, canActivate: [AuthGuard]},
+            {path:'document' , component:DocumentsComponent, canActivate: [AuthGuard]}
         ]
     },
     { path: 'login', component: LoginComponent},

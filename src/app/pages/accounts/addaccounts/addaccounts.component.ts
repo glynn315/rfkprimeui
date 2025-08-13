@@ -30,7 +30,8 @@ export class AddaccountsComponent implements OnInit {
     user_zip: 0,
     user_status: 'ACTIVE',
     user_username: '',
-    user_password: ''
+    user_password: '',
+    userRole: '',
   }
 
 
