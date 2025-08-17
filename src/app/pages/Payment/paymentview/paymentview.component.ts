@@ -53,8 +53,9 @@ export class PaymentviewComponent implements OnInit {
   }
 
   payment(id?:number){
+    this.orderID = this.route.snapshot.paramMap.get('order_id');
     if (id) {
-      this.routes.navigate(['/paymenttransaction', id]);
+      this.routes.navigate(['/paymenttransaction', id, this.orderID]);
     }
   }
 }

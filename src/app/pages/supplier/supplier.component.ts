@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class SupplierComponent implements OnInit {
   
   constructor(private SupplierService: SupplierService){}
-
+  selectedSupplier: Supplier | null = null;
   readonly plus = PlusCircleIcon;
   openSupplierModal = false;
   displaySupplier: Supplier[] = [];
@@ -32,9 +32,21 @@ export class SupplierComponent implements OnInit {
   }
   
   openModal(){
+    this.selectedSupplier = null;
     this.openSupplierModal = true;
   }
   closeModal() {
     this.openSupplierModal = false;
+  }
+  editSupplier(supplier: Supplier) {
+    this.selectedSupplier = supplier;
+    this.openSupplierModal = true;
+  }
+  deleteSupplier(id: string) {
+    if (confirm("Are you sure you want to delete this supplier?")) {
+      this.SupplierService.removeSupplier(id).subscribe(() => {
+        this.DisplaySupplier();
+      });
+    }
   }
 }

@@ -1,8 +1,24 @@
-<div *ngIf="displayInfo">
-    {{displayInfo.first_name}}
-    {{displayInfo.middle_name}}
-    {{displayInfo.last_name}}
-    {{displayInfo.contact_number}}
+<div class="w-full p-4 rounded-2xl bg-cyan-400 text-black mb-5">
+    <header class="text-3xl border-b-2 pb-3">Customer Information</header>
+    <table *ngIf="displayInfo" class="">
+        <tr>
+            <td class="w-50">Full Name</td>
+            <td>{{displayInfo.first_name}} {{displayInfo.middle_name}} {{displayInfo.last_name}}</td>
+        </tr>
+        <tr>
+            <td>Contact Person</td>
+            <td>{{displayInfo.contact_person}}</td>
+        </tr>
+        <tr>
+            <td>Contact Number</td>
+            <td>{{displayInfo.contact_number}}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>{{displayInfo.province}} {{displayInfo.city}}</td>
+        </tr>
+    </table>
+
 </div>
 <table class="w-full">
     <thead class="text-left">

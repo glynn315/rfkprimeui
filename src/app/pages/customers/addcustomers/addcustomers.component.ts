@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomerService } from '../../../Services/Customer/customer.service';
 import { Customer } from '../../../model/Customer/customer.model';
+import { Router } from '@angular/router';
+import { CustomersComponent } from '../customers.component';
 
 @Component({
   selector: 'app-addcustomers',
@@ -15,7 +17,7 @@ import { Customer } from '../../../model/Customer/customer.model';
 })
 export class AddcustomersComponent implements OnInit {
 
-  constructor(private CustomerServices: CustomerService){}
+  constructor(private Customer: CustomersComponent,private CustomerServices: CustomerService, private router : Router){}
   CustomerFields: Customer = {
     customer_fname: '',
     customer_lname: '',
@@ -33,12 +35,13 @@ export class AddcustomersComponent implements OnInit {
   @Output() openCustomerModalChange = new EventEmitter<boolean>();
 
   ngOnInit(): void {
-
+    
   }
 
   addNewCustomer(){
     this.CustomerServices.addNewCustomer(this.CustomerFields).subscribe(() => {
-
+      this.openCustomerModalChange.emit(false);
+      this.Customer.DisplayCustomer();
     });
   }
   

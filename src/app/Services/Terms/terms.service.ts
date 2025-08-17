@@ -21,7 +21,7 @@ export class TermsService {
     return this.http.get<Terms[]>(`${this.apiUrl}/customerTerms`);
   }
 
-  displayTermsInformation(id:number): Observable<Terms>{
+  displayTermsInformation(id:string): Observable<Terms>{
     return this.http.get<Terms>(`${this.apiUrl}/payment/${id}`);
   }
 
@@ -32,7 +32,7 @@ export class TermsService {
   addTerms(post:Terms): Observable<Terms>{
     return this.http.post<Terms>(this.apiUrl, post);
   }
-  updatePaymentStatus(id: number, status: string, paymentDate?: string): Observable<Terms> {
+  updatePaymentStatus(id: String, status: string, paymentDate?: string): Observable<Terms> {
     const url = `${this.apiUrl}/${id}/status`;
     const body: any = {
       payment_status: status

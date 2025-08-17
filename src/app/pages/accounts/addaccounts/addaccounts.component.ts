@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from '../../../Services/UserAccount/user.service';
 import { User } from '../../../model/User/user.model';
+import { AccountsComponent } from '../accounts.component';
 
 @Component({
   selector: 'app-addaccounts',
@@ -15,13 +16,16 @@ import { User } from '../../../model/User/user.model';
 })
 export class AddaccountsComponent implements OnInit {
 
-  constructor(private UserService: UserService){}
+  constructor(
+    private userService: UserService, 
+    private accountComponents: AccountsComponent
+  ){}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  UserFields: User ={
+  // Form fields
+  UserFields: User = {
+    user_id: '',
     user_fname: '',
     user_mname: '',
     user_lname: '',
@@ -32,21 +36,58 @@ export class AddaccountsComponent implements OnInit {
     user_username: '',
     user_password: '',
     userRole: '',
-  }
-
+  };
 
   @Input() openAccountModal = false;
-  headerText = 'Add New Users';
+  @Input() editUser: User | null = null;   // 🔹 when passed, it's edit mode
+  headerText = 'Add New User';
   @Output() openAccountModalChange = new EventEmitter<boolean>();
+
+  get isEditMode(): boolean {
+    return this.editUser !== null;
+  }
+
+  ngOnChanges(): void {
+    if (this.editUser) {
+      this.headerText = 'Edit User';
+      this.UserFields = { ...this.editUser, user_password: '' }; // clear password
+    } else {
+      this.headerText = 'Add New User';
+      this.resetForm();
+    }
+  }
 
   closeModal() {
     this.openAccountModalChange.emit(false);
   }
 
-  AddNewUser(){
-    this.UserService.AddNewUser(this.UserFields).subscribe(()=>{
+  saveUser(){
+    if (this.isEditMode) {
+      this.userService.UpdateUser(this.UserFields.user_id!, this.UserFields).subscribe(() => {
+        this.accountComponents.DisplayData();
+        this.closeModal();
+      });
+    } else {
+      this.userService.AddNewUser(this.UserFields).subscribe(() => {
+        this.accountComponents.DisplayData();
+        this.closeModal();
+      });
+    }
+  }
 
-    })
-
+  resetForm() {
+    this.UserFields = {
+      user_id: '',
+      user_fname: '',
+      user_mname: '',
+      user_lname: '',
+      user_province: '',
+      user_city: '',
+      user_zip: 0,
+      user_status: 'ACTIVE',
+      user_username: '',
+      user_password: '',
+      userRole: '',
+    };
   }
 }

@@ -26,12 +26,12 @@
             </span>
             <span *ngIf="User.userRole == null"> - </span>
         </td>
-        <td class="py-3 text-left">
-            {{User.user_fname}}
+        <td class="text-center">
+            <button class="bg-cyan-400 px-9 py-2 rounded" (click)="openEditUser(User)">Edit</button>
         </td>
     </tr>
 </table>
 
-<app-addaccounts [openAccountModal]="openAccountModal" (openAccountModalChange)="openAccountModal = $event">
+<app-addaccounts [openAccountModal]="openAccountModal" (openAccountModalChange)="openAccountModal = $event" [editUser]="selectedUser">
     
 </app-addaccounts>

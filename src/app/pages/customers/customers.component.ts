@@ -31,6 +31,18 @@ export class CustomersComponent implements OnInit {
     });
   }
 
+  // editCustomer(customer: Customer) {
+  //   this.CustomerServices.updateCustomer(CustomerList.customer_id, customer).subscribe(() => {
+  //     this.DisplayCustomer();
+  //   });
+  // }
+
+  removeCustomer(id: string, status: string) {
+    this.CustomerServices.updateStatus(id, status).subscribe(res => {
+      this.DisplayCustomer();
+    });
+  }
+
   
   openModal(){
     this.openCustomerModal = true;

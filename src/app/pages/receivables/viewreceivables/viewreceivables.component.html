@@ -32,7 +32,6 @@
         <th class="py-3 text-left">Amount</th>
         <th class="py-3 text-center">Payment Date</th>
         <th class="py-3 text-left">Status</th>
-        <th class="py-3 text-center">Actions</th>
     </thead>
     <tr class="hover:bg-cyan-300 duration-100" *ngFor="let Terms of TermsList; let index = index">
         <td class="py-2 text-center">
@@ -49,14 +48,6 @@
         </td>
         <td class="py-2 text-left">
             {{Terms.payment_status}}
-        </td>
-        <td class="py-2 text-center">
-            <div *ngIf="Terms.payment_status == 'PAID'">
-                <span class="p-1 bg-green-400 rounded-md px-7 text-white cursor-default">PAID</span>
-            </div>
-            <div *ngIf="Terms.payment_status == 'PENDING'">
-                <button class="p-1 bg-cyan-400 rounded-md px-8 text-white cursor-pointer" (click)="viewReceivables(Terms.id)">PAY</button>
-            </div>
         </td>
     </tr>
 </table>

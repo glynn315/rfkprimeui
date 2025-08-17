@@ -8,7 +8,6 @@
         <th class="py-3 text-center">#</th>
         <th class="py-3 text-left">Name</th>
         <th class="py-3 text-left">Address</th>
-        <th class="py-3 text-center">Role</th>
         <th class="py-3 text-left">Number</th>
         <th class="py-3 text-center">Actions</th>
     </thead>
@@ -22,14 +21,16 @@
         <td class="py-3 text-left">
             {{Customer.customer_province}} {{Customer.customer_city}} , {{Customer.customer_zip}}
         </td>
-        <td class="py-3 text-center">
-            -
-        </td>
         <td class="py-3 text-left">
             {{Customer.contact_number}}
         </td>
         <td class="py-3 text-center">
-            {{Customer.customer_status}}
+            <!-- <button class="px-3 py-1 bg-yellow-300 rounded-md mr-2" (click)="editCustomer(Customer)">
+                Edit
+            </button> -->
+            <button class="px-3 py-1 bg-red-400 text-white rounded-md" (click)="removeCustomer(Customer.customer_id! , 'REMOVE')">
+                Delete
+            </button>
         </td>
     </tr>
 </table>

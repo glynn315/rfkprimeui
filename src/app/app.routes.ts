@@ -18,6 +18,7 @@ import { PaymentviewComponent } from './pages/Payment/paymentview/paymentview.co
 import { PaymenttransactionComponent } from './pages/Payment/paymenttransaction/paymenttransaction.component';
 import { ViewreceivablesComponent } from './pages/receivables/viewreceivables/viewreceivables.component';
 import { AuthGuard } from './guards/auth.guard';
+import { RestockComponent } from './pages/inventory/restock/restock/restock.component';
 
 export const routes: Routes = [
     {path:'',redirectTo:'/login', pathMatch:'full'},
@@ -39,7 +40,8 @@ export const routes: Routes = [
             {path:'payments' , component:PaymentComponent, canActivate: [AuthGuard]},
             {path:'viewTerms/:order_id' , component:PaymentviewComponent, canActivate: [AuthGuard]},
             {path:'viewReceivables/:order_id' , component:ViewreceivablesComponent, canActivate: [AuthGuard]},
-            {path:'paymenttransaction/:id' , component:PaymenttransactionComponent, canActivate: [AuthGuard]},
+            { path: 'paymenttransaction/:id/:order_id', component: PaymenttransactionComponent, canActivate: [AuthGuard] },
+            {path:'restock/:id' , component:RestockComponent, canActivate: [AuthGuard]},
             {path:'document' , component:DocumentsComponent, canActivate: [AuthGuard]}
         ]
     },

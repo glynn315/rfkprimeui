@@ -24,7 +24,7 @@
       <td>{{ item.remaining_quantity }}</td>
       <td>{{ item.total_sold }}</td>
       <td>
-        <button class="w-full rounded-xl p-1.5 text-white cursor-pointer bg-cyan-400">
+        <button (click)="restock(item.product_id!)" class="w-full rounded-xl p-1.5 text-white cursor-pointer bg-cyan-400">
           View
         </button>
       </td>

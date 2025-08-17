@@ -37,4 +37,15 @@ export class AccountsComponent implements OnInit {
   closeModal() {
     this.openAccountModal = false;
   }
+  selectedUser: User | null = null;
+
+  openAddUser(){
+    this.selectedUser = null;
+    this.openAccountModal = true;
+  }
+
+  openEditUser(user: User){
+    this.selectedUser = user;
+    this.openAccountModal = true;
+}
 }

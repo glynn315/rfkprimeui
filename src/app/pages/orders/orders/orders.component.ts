@@ -28,7 +28,7 @@ export class OrdersComponent implements OnInit {
     supplier_id: '',
     product_name: '',
     product_volume: '',
-    product_quantity: '',
+    product_quantity: 0,
     product_pricepc: 0,
     product_pricebulk: 0,
     product_status: ''
@@ -57,7 +57,7 @@ export class OrdersComponent implements OnInit {
 
     this.ProductServices.displaySelectedProduct(product_id).subscribe((data) => {
       this.displaySelectedProduct = data;
-      this.cartFields.product_price = this.displaySelectedProduct.product_pricebulk * 1.12;
+      this.cartFields.product_price = this.displaySelectedProduct.product_pricebulk! * 1.12;
       this.OpenProductModal = true;
     }, (error) => {
       console.error('Failed to load product:', error);

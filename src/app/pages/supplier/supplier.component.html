@@ -8,7 +8,7 @@
         <th class="py-3 text-center">#</th>
         <th class="py-3 text-left">Name</th>
         <th class="py-3 text-left">Address</th>
-        <th class="py-3 text-center">Action</th>
+        <th class="py-3 text-center !w-[200px]">Action</th>
     </thead>
     <tr class="hover:bg-cyan-300 duration-100" *ngFor="let supplier of displaySupplier; let index = index">
         <td class="py-3 text-center">
@@ -20,10 +20,22 @@
         <td class="py-3 text-left">
             {{supplier.brand_name}}
         </td>
-        <td class="py-3 text-left">
-            <!-- {{User.user_fname}} -->
+        <td class="py-3 text-center flex gap-2 justify-center !w-[200px]">
+            <button class="px-3 py-1 rounded-md bg-blue-500 text-white hover:bg-blue-600 duration-150"
+                    (click)="editSupplier(supplier)">
+                Edit
+            </button>
+            <button class="px-3 py-1 rounded-md bg-red-500 text-white hover:bg-red-600 duration-150"
+                    (click)="deleteSupplier(supplier.supplier_id!)">
+                Delete
+            </button>
         </td>
     </tr>
 </table>
 
-<app-add-supplier [openSupplierModal]="openSupplierModal" (openSupplierModalChange)="openSupplierModal = $event"></app-add-supplier>
+<app-add-supplier 
+  [openSupplierModal]="openSupplierModal"
+  [editSupplier]="selectedSupplier" 
+  (openSupplierModalChange)="openSupplierModal = $event"
+  (supplierSaved)="DisplaySupplier()">
+</app-add-supplier>

@@ -1,13 +1,31 @@
-<div *ngIf="displayInfo">
-    {{displayInfo.amount}}
-    {{displayInfo.order_id}}
-    <form (ngSubmit)="payTerms()">
-        <div>
-            <label for="">Amount</label>
-            <input type="text" name="payment_amount" [(ngModel)]="paymentField.payment_amount" id="" placeholder="Amount">
-        </div>
-        <button *ngIf="displayInfo.amount == paymentField.payment_amount">
-            Payment
-        </button>
-    </form>
+<div *ngIf="displayInfo" class="max-w-lg mx-auto mt-6 bg-white shadow-lg rounded-xl p-6">
+  <h2 class="text-xl font-semibold text-gray-800 mb-4">Payment Transaction</h2>
+
+  <div class="mb-4">
+    <p class="text-gray-600"><strong>Order ID:</strong> {{ orderID }}</p>
+    <p class="text-gray-600"><strong>Name : </strong> {{ displayInfo.first_name }} {{ displayInfo.last_name }}</p>
+    <p class="text-gray-600"><strong>Amount Due : </strong> {{ paymentInfo?.amount }}</p>
+  </div>
+  <form (ngSubmit)="payTerms()" class="space-y-4">
+    <div>
+      <label for="payment_amount" class="block text-sm font-medium text-gray-700">Enter Amount</label>
+      <input
+        type="number"
+        id="payment_amount"
+        name="payment_amount"
+        [(ngModel)]="paymentField.payment_amount"
+        placeholder="Enter amount"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
+      />
+    </div>
+    
+
+    <button
+      type="submit"
+      *ngIf="paymentField.payment_amount == paymentInfo?.amount"
+      class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-700 transition"
+    >
+      Pay Now
+    </button>
+  </form>
 </div>

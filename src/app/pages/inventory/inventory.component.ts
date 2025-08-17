@@ -8,17 +8,18 @@ import { CommonModule } from '@angular/common';
 import pdfMake from 'pdfmake/build/pdfmake';
 // @ts-ignore
 import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { Router, RouterLink, Routes } from '@angular/router';
 pdfMake.vfs = pdfFonts.vfs;
 
 @Component({
   selector: 'app-inventory',
-  imports: [LucideAngularModule, HttpClientModule, CommonModule],
+  imports: [LucideAngularModule, HttpClientModule, CommonModule, RouterLink],
   templateUrl: './inventory.component.html',
   styleUrl: './inventory.component.scss',
   providers: [ProductService]
 })
 export class InventoryComponent implements OnInit {
-  constructor(private ProductServices: ProductService) {}
+  constructor(private ProductServices: ProductService, private route: Router) {}
   readonly box = BoxIcon;
   readonly Printer = Printer;
 
@@ -35,6 +36,12 @@ export class InventoryComponent implements OnInit {
       this.inventorySummary.total_sold = data.reduce((sum, i) => sum + Number(i.total_sold), 0);
       this.inventorySummary.total_remaining = data.reduce((sum, i) => sum + Number(i.remaining_quantity), 0);
     });
+  }
+
+  restock(product_id?: number){
+    if (product_id) {
+      this.route.navigate(['/restock', product_id]);
+    }
   }
 
   generateInventoryReport() {

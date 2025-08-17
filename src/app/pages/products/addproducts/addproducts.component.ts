@@ -28,7 +28,7 @@ export class AddproductsComponent implements OnInit {
     supplier_id: '',
     product_name: '',
     product_volume: '',
-    product_quantity: '',
+    product_quantity: 0,
     product_pricepc: 0,
     product_pricebulk: 0,
     product_status: 'ACTIVE'

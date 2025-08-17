@@ -21,4 +21,12 @@ export class SupplierService {
   addSupplier(post:Supplier): Observable<Supplier>{
     return this.http.post<Supplier>(this.ApiUrl, post);
   }
+
+  updateSupplier(id:string, post:Supplier): Observable<Supplier>{
+    return this.http.put<Supplier>(`${this.ApiUrl}/${id}`, post);
+  }
+
+  removeSupplier(id:string): Observable<Supplier>{
+    return this.http.delete<Supplier>(`${this.ApiUrl}/remove/${id}`);
+  }
 }

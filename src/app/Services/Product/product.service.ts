@@ -38,4 +38,11 @@ export class ProductService {
   getInventoryList(): Observable<any[]> {
     return this.http.get<any[]>(`${this.ApiUrl}/inventory`);
   }
+
+  updatestocks(product_id: string, quantity: number): Observable<Product> {
+    return this.http.post<Product>(`${this.ApiUrl}/add-stocks/${product_id}`, {
+      quantity: quantity
+    });
+
+  }
 }
