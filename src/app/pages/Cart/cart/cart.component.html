@@ -1,85 +1,120 @@
 <div class="mt-1 flex justify-between items-center">
-    <p class="text-lg">Order Management</p>
+    <p class="text-2xl font-semibold text-gray-800">🛒 Order Management</p>
 </div>
-<div class="flex justify-between items-start gap-4">
-    <table class="w-5/6">
-        <thead class="text-left">
+
+<div class="flex justify-between items-start gap-6 mt-4">
+    <div class="w-5/6 bg-white rounded-xl shadow-md border p-4">
+        <table class="w-full border-collapse">
+        <thead>
+            <tr class="bg-cyan-600 text-white">
             <th class="py-3 text-center">#</th>
             <th class="py-3 text-left">Product Name</th>
             <th class="py-3 text-center">Quantity</th>
-            <th class="py-3 text-center">Price</th>
             <th class="py-3 text-center">Price w/ Tax</th>
             <th class="py-3 text-center">Tax</th>
             <th class="py-3 text-center">Discount</th>
             <th class="py-3 text-center">Total</th>
+            </tr>
         </thead>
-        <tr class="hover:bg-cyan-300 duration-100" *ngFor="let cart of cartDetails; let index = index">
-            <td class="py-3 text-center">
-                {{index + 1}}
+        <tbody>
+            <tr
+            class="hover:bg-cyan-100 transition duration-200 border-b"
+            *ngFor="let cart of cartDetails; let index = index"
+            >
+            <td class="py-2 text-center">{{ index + 1 }}</td>
+            <td class="py-2 text-left font-medium text-gray-700">
+                {{ cart.product_id }}
             </td>
-            <td class="py-3 text-left">
-                {{cart.product_id}}
+            <td class="py-2 text-center">{{ cart.quantity }}</td>
+            <td class="py-2 text-center">₱{{ cart.product_price | number:'1.2-2' }}</td>
+            <td class="py-2 text-center">{{ cart.vat }} %</td>
+            <td class="py-2 text-center">{{ cart.discount }} %</td>
+            <td class="py-2 text-center font-semibold text-gray-800">
+                {{
+                ((cart.product_price - (cart.discount!) * cart.product_price) *
+                    cart.quantity) | currency:'PHP':'symbol':'1.2-2'
+                }}
             </td>
-            <td class="py-3 text-center">
-                {{cart.quantity}}
-            </td>
-            <td class="py-3 text-center">
-                {{cart.product_price - (cart.product_price * .12)}}
-            </td>
-            <td class="py-3 text-center">
-                {{cart.product_price}}
-            </td>
-            <td class="py-3 text-center">
-                {{cart.vat}} %
-            </td>
-            <td class="py-3 text-center">
-                {{cart.discount}} %
-            </td>
-            <td class="py-3 text-center">
-                {{ ((cart.product_price - ((cart.discount === 0 ? cart.discount : totalDiscount) * cart.product_price))* cart.quantity) | currency:'PHP':'symbol':'1.2-2' }}
-            </td>
-        </tr>
-    </table>
-    <div class="w-1/6 border p-2 rounded-md">
-        <form>
-            <div>
-                Select Customer
-                <select name="customer_id" [(ngModel)]="OrderFields.customer_id" id="" class="border rounded-md w-full p-2">
-                    <option value="">Select Customer</option>
-                    <option *ngFor="let customer of CustomerInformation" value="{{customer.customer_id}}">{{customer.customer_fname +' '+ customer.customer_lname}}</option>
-                </select>
-            </div>
-            <div>
-                Total
-                {{cartTotal | currency:'PHP':'symbol':'1.2-2'}}
-            </div>
-            <div>
-                Payment Method
-                <select name="payment_method" [(ngModel)]="OrderFields.payment_method" id="" (change)="selectPaymentMethod()" class="border rounded-md w-full p-2">
-                    <option value="">Select Payment Option</option>
-                    <option value="Cash">Cash</option>
-                    <option value="Credit">Credit</option>
-                </select>
-            </div>
-            <div *ngIf="amountVisible">
-                Amount
-                <input type="text" name="payment_amount" [(ngModel)]="paymentFields.payment_amount" id="" class="border rounded-md w-full p-2">
-            </div>
-            <div *ngIf="termsVisible">
-                Terms
-                <select name="terms" [(ngModel)]="OrderFields.terms" id="" class="border rounded-md w-full p-2">
-                    <option value="">Select Terms</option>
-                    <option value="4">4 Months</option>
-                    <option value="6">6 Months</option>
-                    <option value="8">8 months</option>
-                    <option value="12">12 months</option>
-                </select>
-                Percentage %
-                <input type="text" name="percentage" [(ngModel)]="OrderFields.percentage" id="" class="border rounded-md w-full p-2">
-            </div>
-            <button class="p-2 bg-cyan-400 rounded-md text-white mt-4 w-full" (click)="addPayment()">
-                Update Payment
-            </button>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+    <div class="w-2/6 bg-white rounded-xl shadow-md border p-4">
+        <form (ngSubmit)="generateReceipt()" #orderForm="ngForm">
+        <div class="mb-4">
+            <label class="font-medium text-gray-700">Select Customer</label>
+            <select
+            name="customer_id"
+            [(ngModel)]="OrderFields.customer_id"
+            class="border rounded-md w-full p-2 mt-1"
+            required
+            >
+            <option value="">Select Customer</option>
+            <option
+                *ngFor="let customer of CustomerInformation"
+                [value]="customer.customer_id"
+            >
+                {{ customer.customer_fname + " " + customer.customer_lname }}
+            </option>
+            </select>
+        </div>
+        <div class="mb-4 text-lg font-semibold text-gray-800">
+            Total: <span class="text-cyan-700">{{ cartTotal | currency:'PHP':'symbol':'1.2-2' }}</span>
+        </div>
+        <div class="mb-4">
+            <label class="font-medium text-gray-700">Payment Method</label>
+            <select
+            name="payment_method"
+            [(ngModel)]="OrderFields.payment_method"
+            (change)="selectPaymentMethod()"
+            class="border rounded-md w-full p-2 mt-1"
+            required
+            >
+            <option value="">Select Payment Option</option>
+            <option value="Cash">Cash</option>
+            <option value="Credit">Credit</option>
+            </select>
+        </div>
+        <div *ngIf="amountVisible" class="mb-4">
+            <label class="font-medium text-gray-700">Amount</label>
+            <input
+            type="number"
+            name="payment_amount"
+            [(ngModel)]="paymentFields.payment_amount"
+            class="border rounded-md w-full p-2 mt-1"
+            required
+            />
+        </div>
+        <div *ngIf="termsVisible" class="mb-4">
+            <label class="font-medium text-gray-700">Terms</label>
+            <select
+            name="terms"
+            [(ngModel)]="OrderFields.terms"
+            class="border rounded-md w-full p-2 mt-1"
+            required
+            >
+            <option value="">Select Terms</option>
+            <option value="4">4 Months</option>
+            <option value="6">6 Months</option>
+            <option value="8">8 Months</option>
+            <option value="12">12 Months</option>
+            </select>
+
+            <label class="font-medium text-gray-700 mt-2 block">Percentage %</label>
+            <input
+            type="number"
+            name="percentage"
+            [(ngModel)]="OrderFields.percentage"
+            class="border rounded-md w-full p-2 mt-1"
+            />
+        </div>
+        <button
+            type="submit"
+            [disabled]="!orderForm.form.valid"
+            class="p-2 bg-cyan-500 hover:bg-cyan-600 rounded-md text-white mt-4 w-full transition"
+        >
+            💳 Update Payment & Generate Receipt
+        </button>
         </form>
     </div>
 </div>
