@@ -34,3 +34,28 @@
     </div>
   </div>
 </div>
+<app-modal [isVisible]="OpenProductModal" [headerText]="headerText" (close)="closeModal()">
+    <form (ngSubmit)="addtoCart()">
+        <h3>Product Name: {{ displaySelectedProduct.product_name }}</h3>
+        <p>Volume: {{ displaySelectedProduct.product_volume }}</p>
+        <p>Quantity: {{ displaySelectedProduct.product_quantity }}</p>
+        <input type="text" [readonly]="true" value="{{displaySelectedProduct.product_pricebulk}}">
+        <p>Status: <span *ngIf="displaySelectedProduct.product_status == 'ACTIVE'">AVAILABLE</span></p>
+        <p>Vat: 12%</p>
+        <p>Price: <input type="text" name="product_price" [(ngModel)]="cartFields.product_price" [readonly]="true"></p>
+        
+        <div>
+            <label for="">Order Quantity</label>
+            <input type="text" name="quantity" [(ngModel)]="cartFields.quantity" class="w-full border rounded-md p-2 mt-1 border-gray-200" id="">
+        </div>
+        <div>
+            <label for="">Discount</label>
+            <input type="text" name="discount" [(ngModel)]="cartFields.discount" class="w-full border rounded-md p-2 mt-1 border-gray-200" id="">
+        </div>
+        <div>
+            <button class="w-full bg-cyan-400 text-white rounded-md mt-2 p-2">
+                Order
+            </button>
+        </div>
+    </form>
+</app-modal>

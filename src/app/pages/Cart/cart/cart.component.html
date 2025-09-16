@@ -23,7 +23,7 @@
             >
             <td class="py-2 text-center">{{ index + 1 }}</td>
             <td class="py-2 text-left font-medium text-gray-700">
-                {{ cart.product_id }}
+                {{ cart.product?.product_name }}
             </td>
             <td class="py-2 text-center">{{ cart.quantity }}</td>
             <td class="py-2 text-center">₱{{ cart.product_price | number:'1.2-2' }}</td>

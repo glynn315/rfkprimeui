@@ -7,23 +7,22 @@
     <thead class="text-left">
         <th class="py-3 text-center">#</th>
         <th class="py-3 text-left">Name</th>
-        <th class="py-3 text-left">Address</th>
+        <th class="py-3 text-left">Path</th>
         <th class="py-3 text-center">Action</th>
     </thead>
-    <tr class="hover:bg-cyan-300 duration-100" *ngFor="let supplier of displaySupplier; let index = index">
+    <tr class="hover:bg-cyan-300 duration-100" *ngFor="let document of documentList; let index = index">
+        <td class="py-3 text-center">{{ index + 1 }}</td>
+        <td class="py-3 text-left">{{ document.file_name }}</td>
+        <td class="py-3 text-left">{{ document.file_path }}</td>
         <td class="py-3 text-center">
-            {{index + 1}}
-        </td>
-        <td class="py-3 text-left">
-            {{supplier.supplier_name}}
-        </td>
-        <td class="py-3 text-left">
-            {{supplier.brand_name}}
-        </td>
-        <td class="py-3 text-left">
-            <!-- {{User.user_fname}} -->
+        <button 
+            class="px-4 py-2 rounded-md bg-green-400 hover:bg-green-500 duration-100"
+            (click)="downloadFile(document.file_path!, document.file_name!)">
+            Download
+        </button>
         </td>
     </tr>
 </table>
+
 
 <app-adddocument [openDocumentModal]="openDocumentModal" (openDocumentModalChange)="openDocumentModal = $event"></app-adddocument>

@@ -12,7 +12,7 @@
             {{index + 1}}
         </td>
         <td class="py-1 text-left">
-            {{Terms.order_id}}
+            {{Terms.order?.customer?.customer_fname | titlecase}} {{Terms.order?.customer?.customer_mname| titlecase}} {{Terms.order?.customer?.customer_lname | titlecase}}
         </td>
         <td class="py-1 text-center">
             {{Terms.schedule_date}}

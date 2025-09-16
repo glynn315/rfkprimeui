@@ -7,4 +7,12 @@ export interface Cart {
     cart_status: string,
     discount?: number,
     vat: number,
+    product?:{
+        product_name?:string,
+    }
 }
+
+export interface product{
+    product_name?: string
+}
+

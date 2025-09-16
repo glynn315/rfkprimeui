@@ -13,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class HeaderComponent {
   readonly user = User;
-
+  userInfo: any;
   constructor(private AuthServices : AuthService, private router: Router) {}
 
   logout() {
@@ -27,6 +27,9 @@ export class HeaderComponent {
         localStorage.removeItem('token');
         this.router.navigate(['/login']);
       }
+    });
+    this.AuthServices.getUser().subscribe(res => {
+      this.userInfo = res;
     });
   }
 }

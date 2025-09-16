@@ -7,4 +7,13 @@ export interface Terms {
     order_id: string,
     terms:number,
     initial_date: Date,
+    order?:{
+        customer?:customer | null,
+    }
+}
+
+export interface customer{
+    customer_fname?:string,
+    customer_mname?:string,
+    customer_lname?:string
 }

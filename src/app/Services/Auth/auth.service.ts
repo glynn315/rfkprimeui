@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,15 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return this.http.get(`${this.apiUrl}/me`, {
       headers: new HttpHeaders({ Authorization: `Bearer ${token}` })
-    });
+    }).pipe(
+      catchError(err => {
+        if (err.status === 401) {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+        }
+        return throwError(() => err);
+      })
+    );
   }
 
   logout(): Observable<any> {
